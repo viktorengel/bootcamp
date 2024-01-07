@@ -13,7 +13,9 @@
                     <form method="POST">
                         @csrf
                         <textarea name="message" id="" cols="10" rows="1" placeholder="{{ __('What\'s on your mind?') }}" class="bg-transparent"></textarea>
-                        <x-primary-button class="mb-4">{{ __('chirps') }}</x-primary-button>
+                        <x-primary-button class="mb-4">
+                            {{ __('chirps') }}
+                        </x-primary-button>
                     </form>
                 </div>
             </div>
