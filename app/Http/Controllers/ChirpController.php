@@ -12,7 +12,10 @@ class ChirpController extends Controller
      */
     public function index()
     {
-        return view('chirps.index');
+        return view('chirps.index', [
+            /* 'chirps' => Chirp::orderBy('created_at','desc')->get() */
+            'chirps' => Chirp::latest()->get()
+    ]);
     }
 
     /**
@@ -28,14 +31,11 @@ class ChirpController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'message' => ['required', 'min:3']
+        $validated = $request->validate([
+            'message' => ['required', 'min:3', 'max:10']
         ]);
 
-        Chirp::create([
-            'message' => request('message'),
-            'user_id' => auth()->id(),
-        ]);
+        $request->user()->chirps()->create($validated);
 
         return to_route('chirps.index')
             ->with('status',__('Chirp created successfully!'));
