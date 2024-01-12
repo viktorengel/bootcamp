@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Chirp;
@@ -13,15 +14,16 @@ Route::middleware('auth')->group(function () {
     
     Route::view('/dashboard', 'dashboard')->name('dashboard');
     
-    Route::get('/chirps', function(){
-        return view('chirps.index');
-    })->name('chirps.index');
+    Route::get('/chirps', [ChirpController::class, 'index'])
+        ->name('chirps.index');
 
-    Route::post('/chirps', function(){
+    /* Route::post('/chirps', function(){
         //return 'Processing Chirps...';
         //return request('message');
         //$message =  request('message');
         // Insert into data base
+
+        //Validation
         Chirp::create([
             //L23'message' => $message, (Simplificación)
             'message' => request('message'),
@@ -32,7 +34,10 @@ Route::middleware('auth')->group(function () {
 
         return to_route('chirps.index')
             ->with('status',__('Chirp created successfully!'));
-    });
+    }); */
+
+    Route::post('/chirps',[ChirpController::class,'store'])
+        ->name('chirps.store');
 });
 
 require __DIR__.'/auth.php';
