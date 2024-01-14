@@ -14,7 +14,7 @@ class ChirpController extends Controller
     {
         return view('chirps.index', [
             /* 'chirps' => Chirp::orderBy('created_at','desc')->get() */
-            'chirps' => Chirp::latest()->get()
+            'chirps' => Chirp::with('user')->latest()->get()
     ]);
     }
 
@@ -32,7 +32,7 @@ class ChirpController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'message' => ['required', 'min:3', 'max:10']
+            'message' => ['required', 'min:3', 'max:255']
         ]);
 
         $request->user()->chirps()->create($validated);

@@ -29,6 +29,7 @@
                     </form>
                 </div>
             </div>
+            {{-- @dump($chirps) --}}
             <div class="mt-6 bg-white dark:bg-gray-800 shadow-sm rounded-lg divide-y dark:divide-gray-900">
                 @foreach($chirps as $chirp)
                     <div class="p-6 flex space-x-2">
@@ -40,8 +41,8 @@
                             <div class="flex justify-between items-center">
                                 <div>
                                     <span class="text-gray-800 dark:text-gray-200">
-                                        USER_NAME
-                                        {{-- {{ $chirp->user->name }} --}}
+                                        {{-- USER_NAME --}}
+                                        {{ $chirp->user->name }}
                                     </span>
                                     <small class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ 
                                     $chirp->created_at->format('j - m - Y, H:i') }}</small>

@@ -3,7 +3,10 @@
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Chirp;
+
+DB::listen(function($query){
+    dump($query->sql);
+});
 
 Route::view('/','welcome')->name('welcome');
 
