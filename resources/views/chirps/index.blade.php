@@ -21,7 +21,7 @@
                         <x-input-error :messages="$errors->get('message')" class="mt-2"/>
                         
                         <x-primary-button class="mt-2">
-                            {{ __('chirps') }}
+                            {{ __('Guardar') }}
                         </x-primary-button>
                         {{-- @error('message')
                             {{ $message }}
