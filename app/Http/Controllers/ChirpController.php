@@ -54,7 +54,9 @@ class ChirpController extends Controller
      */
     public function edit(Chirp $chirp)
     {
-        //
+        return view('chirps.edit', [
+            'chirp' => $chirp
+        ]);
     }
 
     /**

@@ -12,7 +12,7 @@
                     {{-- @dump($errors->all()) --}}
                     {{-- @dump($errors->get('message')) --}}
                     Chirps Form
-                    <form method="POST" action="{{ route('chirps.store') }}">
+                    <form method="POST" action="{{ route('chirps.index') }}">
                         @csrf
                         <textarea name="message" 
                         class="block w-full rounded-md border-gray-300 bg-white shadow-sm transition-colors duration-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-indigo-300 dark:focus:ring dark:focus:ring-indigo-200 dark:focus:ring-opacity-50"
@@ -56,7 +56,8 @@
                             </div>
                             <p class="mt-4 text-lg text-gray-900 dark:text-gray-100">{{ $chirp->message }}</p>
                         </div>
-                        @can('update', $chirp)
+                        {{-- <a href="{{ route('chirps.edit', $chirp) }}">{{ __('Edit Chirp') }}</a> --}}
+                        {{-- @can('update', $chirp) --}}
                             <x-dropdown>
                                 <x-slot name="trigger">
                                     <button>
@@ -69,16 +70,16 @@
                                     <x-dropdown-link :href="route('chirps.edit', $chirp)">
                                         {{ __('Edit Chirp') }}
                                     </x-dropdown-link>
-                                    <form method="POST" action="{{ route('chirps.destroy', $chirp) }}">
+                                    {{-- <form method="POST" action="{{ route('chirps.destroy', $chirp) }}">
                                         @csrf @method('DELETE')
                                         <x-dropdown-link :href="route('chirps.destroy', $chirp)" onclick="event.preventDefault(); this.closest('form').submit();">
                                             {{ __('Delete Chirp') }}
                                         </x-dropdown-link>
-                                    </form>
+                                    </form> --}}
 
                                 </x-slot>
                             </x-dropdown>
-                        @endcan
+                       {{--  @endcan --}}
 
                     </div>
                 @endforeach

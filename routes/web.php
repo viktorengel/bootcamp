@@ -4,9 +4,9 @@ use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-DB::listen(function($query){
+/* DB::listen(function($query){
     dump($query->sql);
-});
+}); */
 
 Route::view('/','welcome')->name('welcome');
 
@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/chirps',[ChirpController::class,'store'])
         ->name('chirps.store');
+    
+    Route::get('/chirps/{chirp}/edit', [ChirpController::class,'edit'])
+        ->name('chirps.edit');
 });
 
 require __DIR__.'/auth.php';
